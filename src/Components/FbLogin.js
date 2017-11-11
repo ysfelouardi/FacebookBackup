@@ -66,11 +66,8 @@ export default class FbLogin extends Component{
         //     console.log('Successful login from facebook : ' + user.name);
         //     alert( 'Successful login for: ' + user.name );
         // });
-        window.FB.api('/me?fields=name,email,location,cover{source},birthday,picture.type(large){url},albums{id,name,count,cover_photo{source}}', function(user) {
-
+        window.FB.api('me?fields=name,email,location,cover,birthday,picture{url},albums{id,name,count,cover_photo{source},photos.limit(1000){source}}', function(user) {
           this.props.displayUserInfos(user);
-
-
             console.log('Successful login from facebook : ' + user.name);
             //alert( 'Successful login for: ' + user.name );
         }.bind(this));

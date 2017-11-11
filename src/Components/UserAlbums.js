@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AlbumItem from './AlbumItem';
+import AlbumPhotos from './AlbumPhotos';
 export default class UserAlbums extends Component {
 
   constructor(props) {
@@ -14,9 +15,16 @@ export default class UserAlbums extends Component {
           source: '',
           id: ''
         },
-        selected : false
+        selected : false,
+        photos : [
+            {
+              id : '',
+              source : ''
+            }
+        ]
       }
-    ]
+    ],
+    selectedAlbum : {}
 
     }
   }
@@ -30,8 +38,8 @@ export default class UserAlbums extends Component {
     this.setState({
       albums: props.albums.data
     }, () => {
-      //console.log("recevied albums inside user albums");
-      //console.log(this.state.albums);
+      console.log("recevied albums inside user albums");
+      console.log(this.state.albums);
     });
 
   }
@@ -48,14 +56,14 @@ export default class UserAlbums extends Component {
 
     }
     this.setState({
-      albums: albums
+      albums: albums,
+      selectedAlbum : selectedAlbum
     }, () => {
       //console.log("after unselecting other albums");
       //console.log(this.state.albums);
     });
+
   }
-
-
 
 
   render() {
@@ -83,6 +91,9 @@ export default class UserAlbums extends Component {
     }
 
 
+    //
+    // console.log("the selected album");
+    // console.log(this.state.selectedAlbum);
 
 
 
@@ -93,9 +104,7 @@ export default class UserAlbums extends Component {
         <div id="albumSection" className="row text-center text-lg-left">
               {albumItems}
         </div>
-          {/* <div id="photoSection" className="row text-center text-lg-left">
-            <div className="gal" id="photoGallery"></div>
-          </div> */}
+        {this.state.selectedAlbum? <AlbumPhotos selectedAlbum={this.state.selectedAlbum}/>: "" }
       </div>
       );
   }
