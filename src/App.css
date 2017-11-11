@@ -1,0 +1,167 @@
+/*importing the bootstrap and the font awesome cdn*/
+@import url('https://bootswatch.com/3/darkly/bootstrap.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+
+
+#fb-btn{
+  margin-top : 20%;
+}
+
+/*#profile, #logout, #albums, #userInfo {
+  display: none;
+}*/
+
+/* user profile styling */
+
+.profile {
+  width: 100%;
+  position: relative;
+  background: #FFF;
+  border: 1px solid #D5D5D5;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.profile .image {
+  display: block;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  border: 5px solid #FFF;
+}
+
+.profile .user {
+  position: relative;
+  padding: 0px 5px 5px;
+}
+
+.profile .user .avatar {
+  position: absolute;
+  left: 20px;
+  top: -85px;
+  z-index: 2;
+}
+
+.profile .user h2 {
+  font-size: 16px;
+  line-height: 20px;
+  display: block;
+  float: left;
+  margin: 4px 0px 0px 135px;
+  font-weight: bold;
+}
+
+.profile .user .actions {
+  float: right;
+}
+
+.profile .user .actions .btn {
+  margin-bottom: 0px;
+}
+
+.profile .info {
+  float: left;
+  margin-left: 20px;
+}
+
+.img-profile {
+  height: 100px;
+  width: 100px;
+}
+
+.img-cover {
+  width: 100%;
+  height: 300px;
+}
+
+.album-cover {
+  height: 200px;
+  width: 100%;
+}
+
+
+.progress{
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 47%;
+    float: right;
+}
+
+.album-thumbnail{
+    cursor: pointer;
+    transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
+}
+
+
+
+.selected-album{
+  transform: scale(1.1,1.1);
+}
+
+
+.selected-album-title{
+  font-weight: bolder;
+  color: #0e2d65;
+}
+
+
+.selected-album img{
+    background-color: #0e2d65;
+}
+
+
+.gal img{
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+.selected-image-toimport{
+      opacity: 0.4;
+      border: 1.5px dashed black;
+}
+
+/*photos gallery styling*/
+
+.gal {
+  -webkit-column-count: 3;
+  /* Chrome, Safari, Opera */
+  -moz-column-count: 3;
+  /* Firefox */
+  column-count: 3;
+}
+
+.gal img {
+  width: 100%;
+  margin: 7px 0;
+}
+
+@media (max-width: 500px) {
+  .gal {
+    -webkit-column-count: 1;
+    /* Chrome, Safari, Opera */
+    -moz-column-count: 1;
+    /* Firefox */
+    column-count: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding: 2px 4px;
+    font-size: 80%;
+    line-height: 1;
+    border-radius: 3px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding: 4px 9px;
+    font-size: 90%;
+    line-height: 1.2;
+  }
+}
