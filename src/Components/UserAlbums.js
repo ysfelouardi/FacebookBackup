@@ -46,7 +46,7 @@ export default class UserAlbums extends Component {
 
   handleSelectedAlbum(selectedAlbum){
     let albums = this.state.albums;
-    //if an album we selected we remve the animation class other albums
+    //if an album is selected we remove the animation class from other albums
     if(albums){
       albums.forEach(album => {
         if(album !== selectedAlbum){
