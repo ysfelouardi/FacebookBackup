@@ -27,10 +27,19 @@ export default class UserInfo extends Component {
 
 
   render() {
+    //if the user is not connected we hide the userinfo section
     let visibility = "";
     if(this.props.hide){
       visibility = "hidden";
     }
+
+    //checking if we need to disable the export btn or not
+    let disability = "";
+    if(this.props.disableExportBtn){
+      disability = "disabled";
+    }
+
+    //console.log(" export btn " + disability);
 
     return (
       <div id="userInfo" className={"col-md-12 " + visibility }>
@@ -45,7 +54,7 @@ export default class UserInfo extends Component {
             <h2 id="userName">{this.state.user.name}</h2>
             <div className="actions">
               <div className="btn-group">
-                <button className="btn btn-success btn-sm tip btn-responsive disabled" id="export-firebase-btn" title="" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
+                <button className={"btn btn-success btn-sm tip btn-responsive " + disability} id="export-firebase-btn" title="" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
                 <button className="btn btn-danger btn-sm tip btn-responsive" id="logout" title="" data-original-title="logout"><span className="fa fa-sign-out"></span> Logout</button>
               </div>
             </div>

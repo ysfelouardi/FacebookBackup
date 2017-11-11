@@ -15,7 +15,9 @@ export default class PhotoItem extends Component {
     // console.log("photo selected ! ");
     // console.log(selectedPhoto);
     this.setState({photo : selectedPhoto});
+
     this.props.selectedPhoto(selectedPhoto);
+
   }
 
 

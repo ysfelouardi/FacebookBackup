@@ -30,15 +30,15 @@ export default class UserAlbums extends Component {
   }
 
   componentWillReceiveProps(props) {
-    //adding the selected attribute to albums to animate then when there are selected
-    props.albums.data.forEach(album => {
-      album["selected"] = false;
-    });
+    //adding the selected attribute to albums to animate them when they are selected
+    // props.albums.data.forEach(album => {
+    //   album["selected"] = false;
+    // });
 
     this.setState({
       albums: props.albums.data
     }, () => {
-      console.log("recevied albums inside user albums");
+      console.log("recevied albums inside user albums component");
       console.log(this.state.albums);
     });
 
@@ -66,12 +66,23 @@ export default class UserAlbums extends Component {
   }
 
 
+  handleSelectedPhotos(selectedPhotos){
+    // console.log("retrieved the selected Photos");
+    // console.log(selectedPhotos);
+    //we call the props func and we pass in the selectedPhotos Array
+    this.props.handleSelectedPhotos(selectedPhotos);
+  }
+
+
   render() {
+    //if the user is not connected we hide album section
     let visibility = "";
     if (this.props.hide) {
       visibility = "hidden";
     }
 
+
+    //getting the albums
     let albumItems = [];
 
     if(this.state.albums){
@@ -104,7 +115,7 @@ export default class UserAlbums extends Component {
         <div id="albumSection" className="row text-center text-lg-left">
               {albumItems}
         </div>
-        {this.state.selectedAlbum? <AlbumPhotos selectedAlbum={this.state.selectedAlbum}/>: "" }
+        {this.state.selectedAlbum? <AlbumPhotos selectedAlbum={this.state.selectedAlbum} handleSelectedPhotos={this.handleSelectedPhotos.bind(this)} />: "" }
       </div>
       );
   }
