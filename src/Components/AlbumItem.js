@@ -7,32 +7,33 @@ export default class AlbumItem extends Component {
   constructor(props){
     super(props);
     this.state = {
-      selected : false
+      album : {}
     }
   }
 
-  handleSelectedAlbum(albumid){
-
-    console.log("album selected ! " + albumid);
-    this.setState({selected : true});
+  handleSelectedAlbum(album){
+    album.selected = true;
+    //console.log("album selected ! " + album.id);
+    this.setState({album : album});
+    this.props.selectedAlbum(album);
   }
 
 
   render() {
     let selectedAlbum = "";
     let selectedTitle = "";
-
-    if(this.state.selected){
+    //if an album is selected we add somme classes to animate and distinguish the album div and the album title span from the other albums
+    if(this.state.album.selected){
         selectedAlbum = "selected-album";
-        selectedTitle = "selected-title";
+        selectedTitle = "selected-album-title";
     }
+
     return (
-      <div className={"col-lg-3 col-md-4 col-xs-6 " + selectedAlbum} data-id={this.props.album.id} onClick={this.handleSelectedAlbum.bind(this,this.props.album.id)} >
-        <a className="d-block mb-4 h-100 text-center album-thumbnail">
+      <div className={"col-lg-3 col-md-4 col-xs-6 album-thumbnail " + selectedAlbum} data-id={this.props.album.id} onClick={this.handleSelectedAlbum.bind(this,this.props.album)} >
+        <a className="d-block mb-4 h-100 text-center">
           <img className="img-fluid img-thumbnail album-cover" src={this.props.cover} alt="" />
             <span className={selectedTitle}>{this.props.album.name} <small>{this.props.album.count} photos</small></span>
-
-          </a>
+        </a>
       </div>
     );
   }

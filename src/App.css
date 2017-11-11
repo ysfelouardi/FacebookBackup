@@ -92,8 +92,14 @@
 }
 
 .album-thumbnail{
-    cursor: pointer;
+    -webkit-transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
+    -moz-transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
+    -o-transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
     transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
+}
+
+.album-thumbnail a{
+    cursor: pointer;
 }
 
 

@@ -5,27 +5,58 @@ export default class UserAlbums extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      albums: {
+      albums: [
+        {
         id: '',
         name: '',
         count: '',
         cover_photo: {
           source: '',
           id: ''
-        }
+        },
+        selected : false
       }
+    ]
+
     }
   }
 
   componentWillReceiveProps(props) {
+    //adding the selected attribute to albums to animate then when there are selected
+    props.albums.data.forEach(album => {
+      album["selected"] = false;
+    });
+
     this.setState({
-      albums: props.albums
+      albums: props.albums.data
     }, () => {
-      // console.log("content from state");
-      // console.log(this.state.albums);
+      //console.log("recevied albums inside user albums");
+      //console.log(this.state.albums);
     });
 
   }
+
+  handleSelectedAlbum(selectedAlbum){
+    let albums = this.state.albums;
+    //if an album we selected we remve the animation class other albums
+    if(albums){
+      albums.forEach(album => {
+        if(album !== selectedAlbum){
+          album.selected = false;
+        }
+      });
+
+    }
+    this.setState({
+      albums: albums
+    }, () => {
+      //console.log("after unselecting other albums");
+      //console.log(this.state.albums);
+    });
+  }
+
+
+
 
   render() {
     let visibility = "";
@@ -35,18 +66,17 @@ export default class UserAlbums extends Component {
 
     let albumItems = [];
 
+    if(this.state.albums){
 
-
-    if(this.state.albums.data){
-       albumItems = this.state.albums.data.map( album => {
-         //console.log(album);
+       albumItems = this.state.albums.map( album => {
+          //console.log(album);
           var coverUrl = "http://placehold.it/400x300";
           if (album.cover_photo) {
             coverUrl = album.cover_photo.source;
           }
 
           return (
-            <AlbumItem key={album.id} album={album} cover={coverUrl}  />
+            <AlbumItem key={album.id} album={album} cover={coverUrl} selectedAlbum={this.handleSelectedAlbum.bind(this)}  />
           );
 
       });
