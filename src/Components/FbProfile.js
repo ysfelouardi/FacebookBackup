@@ -13,20 +13,33 @@ export default class FbProfile extends Component {
        user : {},
        hideLogin : false,
        hideUser : true,
-       disableExportBtn : true
+       disableExportBtn : true,
+       selectedPhotos : [],
+       exportProgress : 0
      };
    }
 
-   handleExport(selectedPhotos){
-     console.log("preparing to export the photos");
-     console.log(selectedPhotos);
+   componentWillReceiveProps(props){
+     console.log("i received props in FbProfile");
+     this.setState({exportProgress: props.exportProgress} , ()=>{
+       console.log("FbProfile received exportpgress");
+       console.log(this.state.exportProgress);
+     });
+   }
+
+   preparingToExport(selectedPhotos){
+     // console.log("preparing to export the photos");
+     // console.log(selectedPhotos);
      if(selectedPhotos.length){
-       this.setState({disableExportBtn : false});
+       this.setState({disableExportBtn : false,selectedPhotos : selectedPhotos});
      }else{
        this.setState({disableExportBtn : true});
      }
+     //console.log("export btn disable ? " + this.state.disableExportBtn);
+   }
 
-     console.log("export btn disable ? " + this.state.disableExportBtn);
+   triggeringExport(){
+      this.props.finalizingExport(this.state.selectedPhotos);
    }
 
    handleUserInfos(user) {
@@ -42,8 +55,8 @@ export default class FbProfile extends Component {
     return (
       <div className="container text-center">
           <Fblogin displayUserInfos={this.handleUserInfos.bind(this)} hide={this.state.hideLogin}/>
-          <UserInfo userinfo={this.state.user} hide={this.state.hideUser} disableExportBtn={this.state.disableExportBtn}/>
-          <UserAlbums albums={this.state.user.albums} hide={this.state.hideUser} handleSelectedPhotos={this.handleExport.bind(this)}/>
+          <UserInfo userinfo={this.state.user} hide={this.state.hideUser} disableExportBtn={this.state.disableExportBtn} handleExport={this.triggeringExport.bind(this)} exportProgress={this.state.exportProgress}/>
+          <UserAlbums albums={this.state.user.albums} hide={this.state.hideUser} handleSelectedPhotos={this.preparingToExport.bind(this)}/>
       </div>
     );
   }

@@ -1,8 +1,7 @@
 /*importing the bootstrap and the font awesome cdn*/
-@import url('https://bootswatch.com/3/darkly/bootstrap.min.css');
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+/*@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');*/
+@import url('https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
 
 
 
@@ -10,9 +9,6 @@
   margin-top : 20%;
 }
 
-/*#profile, #logout, #albums, #userInfo {
-  display: none;
-}*/
 
 /* user profile styling */
 
@@ -84,13 +80,6 @@
 }
 
 
-.progress{
-    margin-right: 5px;
-    margin-top: 5px;
-    width: 47%;
-    float: right;
-}
-
 .album-thumbnail{
     -webkit-transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
     -moz-transition: all .8s cubic-bezier(0.42, 0, 0.6, 2.57);
@@ -114,6 +103,10 @@
   color: #0e2d65;
 }
 
+
+#photoSection{
+  margin-top: 10px;
+}
 
 .selected-album img{
     background-color: #0e2d65;

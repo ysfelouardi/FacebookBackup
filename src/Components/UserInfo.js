@@ -25,6 +25,10 @@ export default class UserInfo extends Component {
 
   }
 
+  handleExport(){
+    this.props.handleExport();
+  }
+
 
   render() {
     //if the user is not connected we hide the userinfo section
@@ -54,13 +58,13 @@ export default class UserInfo extends Component {
             <h2 id="userName">{this.state.user.name}</h2>
             <div className="actions">
               <div className="btn-group">
-                <button className={"btn btn-success btn-sm tip btn-responsive " + disability} id="export-firebase-btn" title="" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
+                <button className={"btn btn-success btn-sm tip btn-responsive " + disability} onClick={this.handleExport.bind(this)} id="export-firebase-btn" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
                 <button className="btn btn-danger btn-sm tip btn-responsive" id="logout" title="" data-original-title="logout"><span className="fa fa-sign-out"></span> Logout</button>
               </div>
             </div>
             <div className="info">
-              <p><span className="glyphicon glyphicon-globe"></span> <span className="title">Address:</span>{this.state.user.location.name}<span id="userAddress"></span></p>
-              <p><span className="glyphicon glyphicon-gift"></span> <span className="title">Date of birth:</span>{this.state.user.birthday}<span id="userBirthday"></span></p>
+              <p><span className="glyphicon glyphicon-globe"></span> <span className="title">Address: </span>{this.state.user.location.name}<span id="userAddress"></span></p>
+              <p><span className="glyphicon glyphicon-gift"></span> <span className="title">Date of birth: </span>{this.state.user.birthday}<span id="userBirthday"></span></p>
             </div>
           </div>
         </div>

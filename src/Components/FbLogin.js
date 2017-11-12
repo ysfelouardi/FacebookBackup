@@ -5,7 +5,7 @@ export default class FbLogin extends Component{
 
 
     componentDidMount(){
-        // Load the required SDK asynchronously for facebook, google and linkedin
+        // Load the required SDK asynchronously for facebook
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -60,18 +60,11 @@ export default class FbLogin extends Component{
 
     fetchDataFacebook(){
         console.log('Welcome!  Fetching your information.... ');
-
-        // window.FB.api('/me', function(user) {
-        //     console.log( user );
-        //     console.log('Successful login from facebook : ' + user.name);
-        //     alert( 'Successful login for: ' + user.name );
-        // });
-        window.FB.api('me?fields=name,email,location,cover,birthday,picture{url},albums{id,name,count,cover_photo{source},photos.limit(1000){source}}', function(user) {
+        window.FB.api('me?fields=name,email,location,cover,birthday,picture.type(large){url},albums{id,name,count,cover_photo{source},photos.limit(1000){source}}', function(user) {
           this.props.displayUserInfos(user);
             console.log('Successful login from facebook : ' + user.name);
             //alert( 'Successful login for: ' + user.name );
         }.bind(this));
-
     }
 
     render(){
