@@ -31,19 +31,33 @@ export default class UserInfo extends Component {
 
 
   render() {
-    //if the user is not connected we hide the userinfo section
+    let progressbarVisiblity = "";
+    let exportPercentage = 0;
     let visibility = "";
+    let disability = "";
+
+    //if the user is not connected we hide the userinfo section
     if(this.props.hide){
       visibility = "hidden";
     }
 
     //checking if we need to disable the export btn or not
-    let disability = "";
     if(this.props.disableExportBtn){
       disability = "disabled";
+      progressbarVisiblity = "hidden";
     }
 
-    //console.log(" export btn " + disability);
+    //show the progressbar if the photos are being exorted
+    if(!this.props.exportProgress){
+        progressbarVisiblity = "hidden";
+    }else{
+        exportPercentage = this.props.exportProgress;
+    }
+
+    // if(exportPercentage === "100"){
+    //   progressbarVisiblity = "hidden";
+    // }
+
 
     return (
       <div id="userInfo" className={"col-md-12 " + visibility }>
@@ -65,6 +79,13 @@ export default class UserInfo extends Component {
             <div className="info">
               <p><span className="glyphicon glyphicon-globe"></span> <span className="title">Address: </span>{this.state.user.location.name}<span id="userAddress"></span></p>
               <p><span className="glyphicon glyphicon-gift"></span> <span className="title">Date of birth: </span>{this.state.user.birthday}<span id="userBirthday"></span></p>
+            </div>
+          </div>
+        </div>
+        <div className={"progressbar col-md-12 " + progressbarVisiblity}>
+          <div className="progress">
+            <div id="upload-progress-bar" className="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow={exportPercentage} aria-valuemin="0" aria-valuemax="100" style={ {width : exportPercentage + '%' }}>
+              {exportPercentage}%
             </div>
           </div>
         </div>

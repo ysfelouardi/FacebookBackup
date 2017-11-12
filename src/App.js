@@ -26,31 +26,30 @@ class App extends Component {
       var img = new Image();
       img.crossOrigin = 'Anonymous';
       img.src = photo.source;
-      img.onload = function() {
+
+      img.onload = function(img){
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
-        canvas.height = this.naturalHeight;
-        canvas.width = this.naturalWidth;
-        ctx.drawImage(this, 0, 0);
+        canvas.height = img.naturalHeight;
+        canvas.width = img.naturalWidth;
+        ctx.drawImage(img, 0, 0);
         var dataUrl = canvas.toDataURL().replace(/data:image\/png;base64,/, '');
         //converting base64 data to binary data
         var blob = b64toBlob(dataUrl, "image/png");
-
-        
-        //uploading the binary photo to firebase
-
+        //uploading the binary data
         var task = photoref.put(blob);
         task.on('state_changed',
           function progress(snapshot) {
               var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("export progress " + percentage);
-              this.setState({exportProgress : percentage});
+              console.log("export progress " + Math.round(percentage));
+              this.setState({exportProgress : Math.round(percentage)});
+          }.bind(this));
+      }.bind(this,img);
 
-          }).bind(this);
-      }
 
     });
   }
+
 
 
 

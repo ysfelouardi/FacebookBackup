@@ -74,6 +74,16 @@
   height: 300px;
 }
 
+
+.progress{
+  height : 20px;
+}
+
+.progress-bar{
+  font-size: 14px !important;
+  line-height: 16px !important;
+}
+
 .album-cover {
   height: 200px;
   width: 100%;
