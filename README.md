@@ -7,10 +7,10 @@ A front end web app made with react js to export your facebook photos to firebas
 ```
 npm install
 ```
-2. hit npm run and you are good to go
+2. hit npm start and you are good to go
 
 ```
-npm run
+npm start
 ```
 #### Technologies used
 > Reactjs
