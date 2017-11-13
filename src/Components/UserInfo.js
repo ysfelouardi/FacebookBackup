@@ -19,7 +19,7 @@ export default class UserInfo extends Component {
 
   componentWillReceiveProps(props){
     this.setState({user: props.userinfo} , ()=>{
-      //console.log("content from state");
+      //console.log("content from state userinfo");
       //console.log(this.state.user);
     });
 
@@ -29,9 +29,7 @@ export default class UserInfo extends Component {
     this.props.handleExport();
   }
 
-  handleLogout(){
-    this.props.logingOut();
-  }
+
 
 
   render() {
@@ -45,7 +43,7 @@ export default class UserInfo extends Component {
       visibility = "hidden";
     }
 
-    //checking if we need to disable the export btn or not
+    //if there is no selected photos we disable the export btn
     if(this.props.disableExportBtn){
       disability = "disabled";
       progressbarVisiblity = "hidden";
@@ -58,6 +56,7 @@ export default class UserInfo extends Component {
         exportPercentage = this.props.exportProgress;
     }
 
+    //hide the progressbr if the export is finished
     if(exportPercentage === 100){
       progressbarVisiblity = "hidden";
     }
@@ -77,12 +76,11 @@ export default class UserInfo extends Component {
             <div className="actions">
               <div className="btn-group">
                 <button className={"btn btn-success btn-sm tip btn-responsive " + disability} onClick={this.handleExport.bind(this)} id="export-firebase-btn" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
-                <button className="btn btn-danger btn-sm tip btn-responsive" id="logout" onClick={this.handleLogout.bind(this)} data-original-title="logout"><span className="fa fa-sign-out"></span> Logout</button>
               </div>
             </div>
             <div className="info">
-              <p><span className="glyphicon glyphicon-globe"></span> <span className="title">Address: </span>{this.state.user.location.name}<span id="userAddress"></span></p>
-              <p><span className="glyphicon glyphicon-gift"></span> <span className="title">Date of birth: </span>{this.state.user.birthday}<span id="userBirthday"></span></p>
+              <p><span className="fa fa-globe"></span> <span className="title">Address: </span>{this.state.user.location.name}<span id="userAddress"></span></p>
+              <p><span className="fa fa-gift"></span> <span className="title">Date of birth: </span>{this.state.user.birthday}<span id="userBirthday"></span></p>
             </div>
           </div>
         </div>

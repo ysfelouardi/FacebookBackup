@@ -11,24 +11,23 @@ export default class PhotoItem extends Component {
   }
 
   handleSelectedPhoto(selectedPhoto){
+    //we change the selection status of the photo
     selectedPhoto.selected = !selectedPhoto.selected;
-    // console.log("photo selected ! ");
-    // console.log(selectedPhoto);
+    
     this.setState({photo : selectedPhoto});
-
     this.props.selectedPhoto(selectedPhoto);
 
   }
 
 
   render() {
-    let selectedPhoto = "";
+    let selected = "";
     //if a photo is selected we add a class to it to animate it and distinguish it from the other photos
     if(this.state.photo.selected){
-        selectedPhoto = "selected-image-toimport";
+        selected = "selected-image";
     }
     return (
-      <img className={selectedPhoto} src={this.props.photo.source} alt={this.props.photo.id} onClick={this.handleSelectedPhoto.bind(this,this.props.photo)}/>
+      <img className={selected} src={this.props.photo.source} alt={this.props.photo.id} onClick={this.handleSelectedPhoto.bind(this,this.props.photo)}/>
     );
   }
 }

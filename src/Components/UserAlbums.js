@@ -31,10 +31,6 @@ export default class UserAlbums extends Component {
   }
 
   componentWillReceiveProps(props) {
-    //adding the selected attribute to albums to animate them when they are selected
-    // props.albums.data.forEach(album => {
-    //   album["selected"] = false;
-    // });
 
     this.setState({
       albums: props.albums.data
@@ -42,23 +38,16 @@ export default class UserAlbums extends Component {
       //console.log("recevied albums inside user albums component");
       //console.log(this.state.albums);
     });
-
   }
 
   handleSelectedAlbum(selectedAlbum){
 
-    // unselecting the previous photos and clear the selectedPhotos
+    // unselecting the previous photos and clearing the selectedPhotos stored in the state
     this.state.selectedPhotos.forEach(photo => {
       photo.selected = false;
       this.state.selectedPhotos.splice(photo);
     });
      this.props.handleSelectedPhotos(this.state.selectedPhotos);
-
-
-
-
-
-
 
 
 
@@ -92,14 +81,13 @@ export default class UserAlbums extends Component {
       if(photo.album_id !== this.state.selectedAlbum.id){
         photo.selected = false;
         selectedPhotos.splice(photo);
-        //console.log(" photo " + index +" album id : "+  photo.album_id + " selected album : " + this.state.selectedAlbum.id);
       }
     })
 
     this.setState({
       selectedPhotos: selectedPhotos
     }, () => {
-      console.log("in userAlbums retrieved the selected Photos");
+      console.log("in userAlbums received selected Photos");
       console.log(this.state.selectedPhotos);
       //we call the props func and we pass in the selectedPhotos Array
       this.props.handleSelectedPhotos(this.state.selectedPhotos);
@@ -134,11 +122,6 @@ export default class UserAlbums extends Component {
 
       });
     }
-
-
-    //
-    // console.log("the selected album");
-    // console.log(this.state.selectedAlbum);
 
 
 

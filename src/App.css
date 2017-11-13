@@ -128,7 +128,7 @@
     transition: all .3s ease-out;
 }
 
-.selected-image-toimport{
+.selected-image{
       opacity: 0.4;
       border: 1.5px dashed black;
 }

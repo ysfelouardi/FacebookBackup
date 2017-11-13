@@ -17,24 +17,22 @@ export default class FbLogin extends Component{
         window.fbAsyncInit = function() {
             window.FB.init({
               appId      : '2041386602760785',
-              cookie     : true,  // enable cookies to allow the server to access the session
-              xfbml      : true,  // parse social plugins on this page
-              version    : 'v2.10' // use version 2.1
+              autoLogAppEvents: true,
+              xfbml      : true,
+              version    : 'v2.10'
             });
         };
     }
 
     facebookLogin(){
         window.FB.login(
-            function(resp){
-                this.statusChangeCallback(resp);
+            function(res){
+                this.statusChangeCallback(res);
             }.bind(this),{ scope : 'public_profile,email,user_birthday,user_location,user_photos' });
     }
 
     checkLoginState() {
-        alert("Checking Login Status")
         console.log( "Checking login status..........." );
-
         window.FB.getLoginStatus(function(response) {
             alert("FB Callback")
             console.log("----------->")
@@ -47,9 +45,6 @@ export default class FbLogin extends Component{
         console.log('statusChangeCallback');
         console.log(response);
         if (response.status === 'connected') {
-            //alert( "Connected to facebook. Retriving user from fb" );
-            // Logged into your app and Facebook.
-            //this.props.displayElements();
             this.fetchDataFacebook();
         } else if (response.status === 'not_authorized') {
             console.log('Import error', 'Authorize app to import data', 'error')
@@ -62,17 +57,13 @@ export default class FbLogin extends Component{
         console.log('Welcome!  Fetching your information.... ');
         window.FB.api('me?fields=name,email,location,cover,birthday,picture.type(large){url},albums{id,name,count,cover_photo{source},photos.limit(1000){source}}', function(user) {
           this.props.displayUserInfos(user);
-            console.log('Successful login from facebook : ' + user.name);
-            //alert( 'Successful login for: ' + user.name );
+          console.log('Successful login from facebook : ' + user.name);
         }.bind(this));
     }
 
-    logout() {
-      window.FB.logout(function(response) {
-      });
-    }
 
     render(){
+      //if the user is authenticated we hide the sign in button
       let visibility = "";
       if(this.props.hide){
         visibility = "hidden";

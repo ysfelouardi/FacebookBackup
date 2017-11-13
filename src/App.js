@@ -13,8 +13,9 @@ class App extends Component {
     }
   }
 
+  //convert the selected photos to binary data and export them to firebase
   exportPhotos(selectedPhotos,username) {
-    console.log("finalizingExport");
+    //console.log("finalizingExport");
     //console.log(selectedPhotos);
 
     var ref = firebase.storage().ref("photos of " + username);
@@ -33,10 +34,11 @@ class App extends Component {
         canvas.height = img.naturalHeight;
         canvas.width = img.naturalWidth;
         ctx.drawImage(img, 0, 0);
-        var dataUrl = canvas.toDataURL().replace(/data:image\/png;base64,/, '');
+        //getting the base64 data
+        var base64Data = canvas.toDataURL().replace(/data:image\/png;base64,/, '');
         //converting base64 data to binary data
-        var blob = b64toBlob(dataUrl, "image/png");
-        //uploading the binary data
+        var blob = b64toBlob(base64Data, "image/png");
+        //uploading the binary data to firebase 
         var task = photoref.put(blob);
         task.on('state_changed',
           function progress(snapshot) {
@@ -48,7 +50,7 @@ class App extends Component {
           console.log(err);
         },
       function complete(){
-            console.log("completed upload !");
+            console.log("upload complete !");
       });
       }.bind(this,img);
 
