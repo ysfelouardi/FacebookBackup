@@ -17,4 +17,4 @@ npm start
 > Facebook SDK
 > Firebase SDK
 
-> the facebook app is still in dev mode,so i need to add you as a tester.
+the facebook app is still in dev mode,so i need to add you as a tester.
