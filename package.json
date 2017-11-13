@@ -2,6 +2,8 @@
   "name": "hidden-founders-challenge",
   "version": "0.1.0",
   "private": true,
+  "author": "El ouardi youssef",
+  "description" : "exporting facebook photos to firebase",
   "dependencies": {
     "b64-to-blob": "^1.2.19",
     "firebase": "^4.6.2",
