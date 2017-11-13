@@ -67,6 +67,11 @@ export default class FbLogin extends Component{
         }.bind(this));
     }
 
+    logout() {
+      window.FB.logout(function(response) {
+      });
+    }
+
     render(){
       let visibility = "";
       if(this.props.hide){

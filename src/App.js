@@ -13,11 +13,11 @@ class App extends Component {
     }
   }
 
-  exportPhotos(selectedPhotos) {
+  exportPhotos(selectedPhotos,username) {
     console.log("finalizingExport");
     //console.log(selectedPhotos);
 
-    var ref = firebase.storage().ref("photos");
+    var ref = firebase.storage().ref("photos of " + username);
 
     selectedPhotos.forEach((photo) => {
       var photoref = ref.child(photo.id + ".png");
@@ -43,7 +43,13 @@ class App extends Component {
               var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               console.log("export progress " + Math.round(percentage));
               this.setState({exportProgress : Math.round(percentage)});
-          }.bind(this));
+          }.bind(this),
+        function error(err){
+          console.log(err);
+        },
+      function complete(){
+            console.log("completed upload !");
+      });
       }.bind(this,img);
 
 

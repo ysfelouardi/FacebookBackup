@@ -24,7 +24,8 @@ export default class UserAlbums extends Component {
         ]
       }
     ],
-    selectedAlbum : {}
+    selectedAlbum : {},
+    selectedPhotos : []
 
     }
   }
@@ -38,15 +39,31 @@ export default class UserAlbums extends Component {
     this.setState({
       albums: props.albums.data
     }, () => {
-      console.log("recevied albums inside user albums component");
-      console.log(this.state.albums);
+      //console.log("recevied albums inside user albums component");
+      //console.log(this.state.albums);
     });
 
   }
 
   handleSelectedAlbum(selectedAlbum){
+
+    // unselecting the previous photos and clear the selectedPhotos
+    this.state.selectedPhotos.forEach(photo => {
+      photo.selected = false;
+      this.state.selectedPhotos.splice(photo);
+    });
+     this.props.handleSelectedPhotos(this.state.selectedPhotos);
+
+
+
+
+
+
+
+
+
     let albums = this.state.albums;
-    //if an album is selected we remove the animation class from other albums
+    //if an album is selected we unselect other albums
     if(albums){
       albums.forEach(album => {
         if(album !== selectedAlbum){
@@ -69,8 +86,25 @@ export default class UserAlbums extends Component {
   handleSelectedPhotos(selectedPhotos){
     // console.log("retrieved the selected Photos");
     // console.log(selectedPhotos);
-    //we call the props func and we pass in the selectedPhotos Array
-    this.props.handleSelectedPhotos(selectedPhotos);
+
+    //remove all the photos that does not belong to the selectedAlbum
+    selectedPhotos.forEach((photo,index) => {
+      if(photo.album_id !== this.state.selectedAlbum.id){
+        photo.selected = false;
+        selectedPhotos.splice(photo);
+        //console.log(" photo " + index +" album id : "+  photo.album_id + " selected album : " + this.state.selectedAlbum.id);
+      }
+    })
+
+    this.setState({
+      selectedPhotos: selectedPhotos
+    }, () => {
+      console.log("in userAlbums retrieved the selected Photos");
+      console.log(this.state.selectedPhotos);
+      //we call the props func and we pass in the selectedPhotos Array
+      this.props.handleSelectedPhotos(this.state.selectedPhotos);
+    });
+
   }
 
 
