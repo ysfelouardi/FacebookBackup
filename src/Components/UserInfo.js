@@ -75,7 +75,7 @@ export default class UserInfo extends Component {
             <h2 id="userName">{this.state.user.name}</h2>
             <div className="actions">
               <div className="btn-group">
-                <button className={"btn btn-success btn-sm tip btn-responsive " + disability} onClick={this.handleExport.bind(this)} id="export-firebase-btn" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
+                <button className={"btn btn-success btn-md tip btn-responsive " + disability} onClick={this.handleExport.bind(this)} id="export-firebase-btn" data-original-title="Export images to firebase"><span className="fa fa-cloud-upload"></span> Export</button>
               </div>
             </div>
             <div className="info">
