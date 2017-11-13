@@ -1,4 +1,4 @@
-### Hidden Founders Coding Challenge
+### Internship Program Coding Challenge
 ### About
 A front end web app made with react js to export your facebook photos to firebase.
 ### Usage
@@ -16,3 +16,5 @@ npm start
 > Reactjs
 > Facebook SDK
 > Firebase SDK
+
+the facebook app is still in dev mode,so i need to add you as a tester.
