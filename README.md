@@ -1,4 +1,4 @@
-### Hidden Founders Coding Challenge
+### Internship Program Coding Challenge
 ### About
 A front end web app made with react js to export your facebook photos to firebase.
 ### Usage
