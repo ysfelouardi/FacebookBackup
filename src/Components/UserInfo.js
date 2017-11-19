@@ -49,14 +49,14 @@ export default class UserInfo extends Component {
       progressbarVisiblity = "hidden";
     }
 
-    //show the progressbar if the photos are being exorted
+    //show the progressbar if the photos are being exported
     if(!this.props.exportProgress){
         progressbarVisiblity = "hidden";
     }else{
         exportPercentage = this.props.exportProgress;
     }
 
-    //hide the progressbr if the export is finished
+    //hide the progressbar if the export is finished
     if(exportPercentage === 100){
       progressbarVisiblity = "hidden";
     }

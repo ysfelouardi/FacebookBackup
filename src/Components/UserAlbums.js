@@ -43,9 +43,9 @@ export default class UserAlbums extends Component {
   handleSelectedAlbum(selectedAlbum){
 
     // unselecting the previous photos and clearing the selectedPhotos stored in the state
-    this.state.selectedPhotos.forEach(photo => {
+    this.state.selectedPhotos.forEach((photo,index) => {
       photo.selected = false;
-      this.state.selectedPhotos.splice(photo);
+      this.state.selectedPhotos.splice(index,1);
     });
      this.props.handleSelectedPhotos(this.state.selectedPhotos);
 
@@ -80,7 +80,7 @@ export default class UserAlbums extends Component {
     selectedPhotos.forEach((photo,index) => {
       if(photo.album_id !== this.state.selectedAlbum.id){
         photo.selected = false;
-        selectedPhotos.splice(photo);
+        selectedPhotos.splice(index,1);
       }
     })
 
