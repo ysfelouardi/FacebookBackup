@@ -1,4 +1,4 @@
-### Internship Program Coding Challenge
+### FaceBook Backup App
 ### About
 A front end web app made with react js to export your facebook photos to firebase.
 ### Usage
